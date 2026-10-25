@@ -2,18 +2,38 @@
 <html lang="es">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#111111">
 <title>MOVIPY</title>
 <style>
-*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#111}#app{position:fixed;inset:0;width:100%;height:100%;background:#111}#movipy-frame{display:block;border:0;width:100%;height:100%;background:#fff}#loading{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:#111;color:#fff;font:600 18px Arial,sans-serif;letter-spacing:.5px;z-index:1}#loading span{display:inline-flex;align-items:center;gap:10px}#loading .car{font-size:28px}
+*{box-sizing:border-box}
+html,body,#app{margin:0;width:100%;height:100%;overflow:hidden}
+body{background:#111}
+#app{position:fixed;inset:0}
+#movipy-frame{display:block;width:100%;height:100%;border:0;background:#fff}
+#loading{position:absolute;inset:0;z-index:2;display:flex;align-items:center;justify-content:center;background:#111;color:#fff;font:600 20px Arial,sans-serif}
+#loading.hidden{display:none}
 </style>
 </head>
 <body>
 <main id="app">
-<div id="loading"><span><span class="car">🚕</span>MOVIPY</span></div>
-<iframe id="movipy-frame" title="MOVIPY" src="https://script.google.com/macros/s/AKfycby6DOBMVN1kmyWndYzjKLoONhYXP8NWMh8gU5yd9JphEAcx-BK1QoaCXUDnolvzOR5DhA/exec" allow="geolocation; camera; microphone" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<div id="loading">🚕 MOVIPY</div>
+<iframe
+ id="movipy-frame"
+ title="MOVIPY"
+ src="https://script.google.com/macros/s/AKfycby6DOBMVN1kmyWndYzjKLoONhYXP8NWMh8gU5yd9JphEAcx-BK1QoaCXUDnolvzOR5DhA/exec"
+ allow="geolocation; camera; microphone"
+ allowfullscreen>
+</iframe>
 </main>
-<script>document.getElementById('movipy-frame').addEventListener('load',()=>{document.getElementById('loading').style.display='none'});</script>
+<script>
+(function(){
+ const frame=document.getElementById('movipy-frame');
+ const loading=document.getElementById('loading');
+ frame.addEventListener('load',function(){
+   loading.classList.add('hidden');
+ });
+})();
+</script>
 </body>
 </html>
